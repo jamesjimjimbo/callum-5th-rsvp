@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callum's 5th Birthday Party 🎮</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- INVITE PAGE -->
+  <div id="invite-page">
+
+    <div class="card">
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        <div class="pre-title">Please join us for an afternoon of games to celebrate</div>
+        <div class="game-on">GAME ON</div>
+        <div class="party-title">Callum's 5th Birthday!</div>
+        <div class="emoji-row">🎮 🃏 🎯 🎲 🕹️</div>
+      </div>
+
+      <div class="yellow-stripe"></div>
+
+      <!-- Details -->
+      <div class="details">
+        <p class="message">
+          Callum is turning 5 and would love nothing more than to celebrate with his friends in an afternoon of his favorite activity — playing games. We'll set up at the upper Robson picnic tables with card games (Spot It, Uno, Top Trump, War) and lawn games. No prior experience needed. :)
+          <br><br>
+          For those less interested in games, we'll have food, good company, and hopefully decent weather.
+          <br><br>
+          We hope you can join us! Your presence is present enough.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-block">
+            <div class="info-label">HOSTED BY</div>
+            <div class="info-value">James & Lilly McKenna</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">DATE</div>
+            <div class="info-value">Saturday, May 9th<br>1:00 PM PDT</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">ADDRESS</div>
+            <div class="info-value underline">Robson-Harrington House<br>237 Crescent Rd<br>San Anselmo, CA 94960</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RSVP Form -->
+      <div class="rsvp-section" id="rsvp-form">
+        <div class="rsvp-label">RSVP</div>
+        <div class="rsvp-title">Will you be there?</div>
+
+        <div class="attend-buttons">
+          <button class="attend-btn" id="btn-yes" onclick="selectAttending(true)">WILL ATTEND</button>
+          <button class="attend-btn" id="btn-no" onclick="selectAttending(false)">WILL NOT ATTEND</button>
+        </div>
+
+        <label class="field-label">YOUR NAME *</label>
+        <input class="field-input" id="name-input" type="text" placeholder="Full name" />
+
+        <div id="guest-count-section" style="display:none">
+          <label class="field-label" style="margin-top:16px">TOTAL GUESTS (INCLUDING YOU)</label>
+          <div class="guest-buttons" id="guest-buttons">
+            <button class="guest-btn active" onclick="selectGuests(1)">1</button>
+            <button class="guest-btn" onclick="selectGuests(2)">2</button>
+            <button class="guest-btn" onclick="selectGuests(3)">3</button>
+            <button class="guest-btn" onclick="selectGuests(4)">4</button>
+            <button class="guest-btn" onclick="selectGuests(5)">5</button>
+            <button class="guest-btn" onclick="selectGuests(6)">6</button>
+          </div>
+        </div>
+
+        <div id="form-error" class="error-msg" style="display:none">Please enter your name and select attendance.</div>
+
+        <button class="submit-btn" id="submit-btn" onclick="submitRsvp()">SEND RSVP</button>
+      </div>
+
+      <!-- Success State -->
+      <div class="rsvp-section" id="rsvp-success" style="display:none">
+        <div id="success-emoji" style="font-size:52px; text-align:center; margin-bottom:12px">🎮</div>
+        <div id="success-title" style="font-size:22px; color:#1a237e; font-weight:bold; text-align:center; margin-bottom:10px"></div>
+        <div id="success-msg" style="color:#9e8e7e; font-size:14px; text-align:center; line-height:1.7"></div>
+        <button onclick="editRsvp()" style="margin-top:20px; display:block; margin-left:auto; margin-right:auto; padding:9px 20px; background:transparent; border:2px solid #ddd; border-radius:2px; font-family:inherit; font-size:13px; cursor:pointer; color:#9e8e7e;">Edit my response</button>
+      </div>
+
+    </div>
+
+    <!-- Host login -->
+    <div class="host-login">
+      <span id="host-toggle" onclick="toggleHostLogin()" style="cursor:pointer; color:#bbb; font-size:12px; text-decoration:underline;">Host login</span>
+      <div id="host-login-form" style="display:none; margin-top:10px; display:none; justify-content:center; gap:8px;">
+        <input type="password" id="host-pwd" placeholder="Password" class="field-input" style="width:160px; margin:0;" onkeydown="if(event.key==='Enter')checkPassword()" />
+        <button onclick="checkPassword()" style="padding:9px 16px; background:transparent; border:2px solid #ddd; border-radius:2px; font-family:inherit; font-size:14px; cursor:pointer; color:#9e8e7e;">→</button>
+      </div>
+      <div id="host-error" style="color:#e53935; font-size:12px; margin-top:6px; display:none;">Wrong password.</div>
+    </div>
+
+  </div>
+
+  <!-- HOST DASHBOARD -->
+  <div id="host-page" style="display:none">
+    <div class="dashboard">
+      <div style="display:flex; gap:10px; margin-bottom:28px;">
+        <button onclick="showInvite()" class="ghost-btn">← Back to invite</button>
+        <button onclick="loadRsvps()" class="ghost-btn">↻ Refresh</button>
+      </div>
+
+      <h1 style="font-size:22px; color:#1a237e; margin-bottom:4px; font-weight:normal;">RSVP Dashboard</h1>
+      <div style="color:#9e8e7e; font-size:14px; margin-bottom:28px;">Callum's 5th Birthday · May 9th</div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🎮</div>
+          <div class="stat-num" id="stat-heads">—</div>
+          <div class="stat-label">TOTAL HEADS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✓</div>
+          <div class="stat-num" id="stat-yes">—</div>
+          <div class="stat-label">ATTENDING</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✗</div>
+          <div class="stat-num" id="stat-no">—</div>
+          <div class="stat-label">DECLINED</div>
+        </div>
+      </div>
+
+      <div id="rsvp-list"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
