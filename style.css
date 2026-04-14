@@ -1,0 +1,329 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Georgia', serif;
+  background: #fffde7;
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
+
+/* ── CARD ── */
+.card {
+  max-width: 560px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ── HERO ── */
+.hero {
+  background: #1a237e;
+  border-top: 12px solid #fdd835;
+  border-left: 12px solid #fdd835;
+  border-right: 12px solid #fdd835;
+  padding: 40px 32px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.corner {
+  position: absolute;
+  bottom: 0;
+  width: 48px;
+  height: 48px;
+  background: #e53935;
+}
+.corner-bl { left: 0; }
+.corner-br { right: 0; }
+
+.pre-title {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: #fdd835;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.game-on {
+  font-size: 56px;
+  font-weight: 900;
+  color: #1a237e;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+  /* pixel effect */
+  -webkit-text-stroke: 1px #1a237e;
+  paint-order: stroke fill;
+  text-shadow:
+    3px 0 0 #e53935,
+    -3px 0 0 #fdd835,
+    0 3px 0 #e53935,
+    0 -3px 0 #fdd835,
+    4px 4px 0 rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, #fdd835 0%, #fff 50%, #fdd835 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.party-title {
+  margin-top: 16px;
+  font-size: 26px;
+  color: #fff;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.emoji-row {
+  margin-top: 20px;
+  font-size: 24px;
+  letter-spacing: 6px;
+}
+
+.yellow-stripe {
+  height: 12px;
+  background: #fdd835;
+}
+
+/* ── DETAILS ── */
+.details {
+  padding: 36px 32px;
+  border-bottom: 2px solid #f0e8d0;
+}
+
+.message {
+  color: #3a3020;
+  line-height: 1.85;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.info-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #9e8e7e;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.info-value {
+  font-size: 13px;
+  color: #2a1f14;
+  line-height: 1.7;
+}
+
+.info-value.underline { text-decoration: underline; }
+
+/* ── RSVP ── */
+.rsvp-section {
+  padding: 32px;
+}
+
+.rsvp-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #9e8e7e;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.rsvp-title {
+  font-size: 20px;
+  color: #1a237e;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.attend-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.attend-btn {
+  flex: 1;
+  padding: 14px 8px;
+  border: 2px solid #ccc;
+  background: #fff;
+  color: #1a237e;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all 0.15s;
+  border-radius: 2px;
+}
+
+.attend-btn.selected {
+  border-color: #1a237e;
+  background: #e8eaf6;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9e8e7e;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 2px;
+  border: 2px solid #e8ddd0;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2a1f14;
+  outline: none;
+  background: #fafafa;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus { border-color: #1a237e; }
+
+.guest-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
+.guest-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  border: 2px solid #ddd;
+  background: #fff;
+  color: #5a4a3a;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.guest-btn.active {
+  border-color: #1a237e;
+  background: #1a237e;
+  color: #fff;
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1a237e;
+  color: #fdd835;
+  border: none;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s;
+}
+
+.submit-btn:hover { opacity: 0.88; }
+.submit-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ── HOST LOGIN ── */
+.host-login {
+  max-width: 560px;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+/* ── DASHBOARD ── */
+.dashboard {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+.ghost-btn {
+  padding: 9px 18px;
+  background: transparent;
+  border: 2px solid #ddd;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  color: #9e8e7e;
+  transition: border-color 0.15s;
+}
+.ghost-btn:hover { border-color: #1a237e; color: #1a237e; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border-top: 4px solid #1a237e;
+}
+
+.stat-icon { font-size: 20px; margin-bottom: 4px; }
+.stat-num { font-size: 32px; font-weight: bold; color: #1a237e; }
+.stat-label { font-size: 11px; color: #9e8e7e; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.rsvp-row {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 8px;
+}
+
+.rsvp-row.attending { border-left: 4px solid #1a237e; }
+.rsvp-row.declined { border-left: 4px solid #e8ddd0; }
+
+.rsvp-name { font-weight: 700; color: #2a1f14; font-size: 15px; }
+.rsvp-time { color: #9e8e7e; font-size: 12px; margin-top: 2px; }
+.rsvp-status { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; }
+.rsvp-status.yes { color: #1a237e; }
+.rsvp-status.no { color: #9e8e7e; }
+.rsvp-guests { font-size: 12px; color: #9e8e7e; margin-top: 2px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .info-grid { grid-template-columns: 1fr; gap: 20px; }
+  .game-on { font-size: 40px; }
+  .hero { padding: 32px 20px 28px; }
+  .details, .rsvp-section { padding: 24px 20px; }
+}
