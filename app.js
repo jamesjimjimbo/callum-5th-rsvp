@@ -5,7 +5,8 @@ const HOST_PASSWORD = "callum2025";
 
 // ── STATE ────────────────────────────────────────────────────
 let attending = null;
-let guestCount = 1;
+let adultCount = 1;
+let kidCount = 0;
 
 // ── SUPABASE HELPERS ─────────────────────────────────────────
 async function supabase(method, path, body) {
@@ -32,10 +33,17 @@ function selectAttending(val) {
   document.getElementById("form-error").style.display = "none";
 }
 
-function selectGuests(n) {
-  guestCount = n;
-  document.querySelectorAll(".guest-btn").forEach((btn, i) => {
+function selectAdults(n) {
+  adultCount = n;
+  document.querySelectorAll("#adult-buttons .guest-btn").forEach((btn, i) => {
     btn.classList.toggle("active", i + 1 === n);
+  });
+}
+
+function selectKids(n) {
+  kidCount = n;
+  document.querySelectorAll("#kid-buttons .guest-btn").forEach((btn, i) => {
+    btn.classList.toggle("active", i === n);
   });
 }
 
@@ -54,7 +62,9 @@ async function submitRsvp() {
     await supabase("POST", "rsvps", {
       name,
       attending,
-      guests: attending ? guestCount : 0,
+      adults: attending ? adultCount : 0,
+      kids: attending ? kidCount : 0,
+      guests: attending ? adultCount + kidCount : 0,
     });
 
     // Show success
@@ -65,7 +75,7 @@ async function submitRsvp() {
       ? "Game on! See you there!"
       : "Sorry you can't make it!";
     document.getElementById("success-msg").textContent = attending
-      ? `We'll see you May 9th at 1PM${guestCount > 1 ? ` — saving ${guestCount} spots!` : "!"}`
+      ? `We'll see you May 9th at 1PM — saving spots for ${adultCount} adult${adultCount !== 1 ? "s" : ""} and ${kidCount} kid${kidCount !== 1 ? "s" : ""}!`
       : "Thanks for letting us know. Callum will miss you!";
 
   } catch (err) {
@@ -122,10 +132,12 @@ async function loadRsvps() {
 
     const yes = data.filter(r => r.attending);
     const no = data.filter(r => !r.attending);
-    const heads = yes.reduce((s, r) => s + r.guests, 0);
+    const totalAdults = yes.reduce((s, r) => s + (r.adults || 0), 0);
+    const totalKids = yes.reduce((s, r) => s + (r.kids || 0), 0);
 
-    document.getElementById("stat-heads").textContent = heads;
     document.getElementById("stat-yes").textContent = yes.length;
+    document.getElementById("stat-adults").textContent = totalAdults;
+    document.getElementById("stat-kids").textContent = totalKids;
     document.getElementById("stat-no").textContent = no.length;
 
     if (data.length === 0) {
@@ -141,7 +153,7 @@ async function loadRsvps() {
         </div>
         <div style="text-align:right">
           <div class="rsvp-status ${r.attending ? "yes" : "no"}">${r.attending ? "ATTENDING" : "DECLINED"}</div>
-          ${r.attending ? `<div class="rsvp-guests">${r.guests} ${r.guests === 1 ? "guest" : "guests"}</div>` : ""}
+          ${r.attending ? `<div class="rsvp-guests">${r.adults || 0} adult${(r.adults || 0) !== 1 ? "s" : ""}, ${r.kids || 0} kid${(r.kids || 0) !== 1 ? "s" : ""}</div>` : ""}
         </div>
       </div>
     `).join("");
