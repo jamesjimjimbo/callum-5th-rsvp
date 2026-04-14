@@ -2,9 +2,52 @@
 
 body {
   font-family: 'Georgia', serif;
-  background: #fffde7;
+  background-color: #fffde7;
+  background-image:
+    /* Grid lines */
+    linear-gradient(rgba(26,35,126,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,35,126,0.12) 1px, transparent 1px),
+    /* Colored squares - row 1 */
+    repeating-linear-gradient(
+      90deg,
+      rgba(229,57,53,0.18) 0px, rgba(229,57,53,0.18) 60px,
+      rgba(253,216,53,0.18) 60px, rgba(253,216,53,0.18) 120px,
+      rgba(26,35,126,0.12) 120px, rgba(26,35,126,0.12) 180px,
+      rgba(102,187,106,0.18) 180px, rgba(102,187,106,0.18) 240px,
+      rgba(239,108,0,0.15) 240px, rgba(239,108,0,0.15) 300px,
+      rgba(171,71,188,0.15) 300px, rgba(171,71,188,0.15) 360px
+    );
+  background-size: 60px 60px, 60px 60px, 360px 60px;
   min-height: 100vh;
   padding: 0 0 80px;
+}
+
+/* Snake SVG overlay on the page */
+#invite-page, #host-page {
+  position: relative;
+}
+
+#invite-page::before {
+  content: "🐍";
+  position: fixed;
+  font-size: 48px;
+  top: 20px;
+  right: 20px;
+  opacity: 0.25;
+  pointer-events: none;
+  transform: rotate(30deg);
+  z-index: 0;
+}
+
+#invite-page::after {
+  content: "🪜";
+  position: fixed;
+  font-size: 48px;
+  bottom: 80px;
+  left: 16px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── CARD ── */
@@ -12,13 +55,16 @@ body {
   max-width: 560px;
   margin: 0 auto;
   background: #fff;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 4px #fdd835;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── HERO ── */
 .hero {
   background: #e53935;
   border: 10px solid #fdd835;
+  border-top: none;
   border-bottom: none;
   padding: 0;
   text-align: center;
@@ -371,13 +417,32 @@ body {
 .rsvp-status.no { color: #9e8e7e; }
 .rsvp-guests { font-size: 12px; color: #9e8e7e; margin-top: 2px; }
 
-.callum-photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+/* ── PHOTO TOP ── */
+.photo-top {
+  position: relative;
+  width: 100%;
+  border: 10px solid #fdd835;
+  border-bottom: none;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 380px;
   object-fit: cover;
-  border: 4px solid #fdd835;
-  margin-bottom: 16px;
+  object-position: center top;
+  display: block;
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  text-align: center;
 }
 
 /* ── RESPONSIVE ── */
