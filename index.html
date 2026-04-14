@@ -20,6 +20,7 @@
         <div class="pre-title">Please join us for an afternoon of games to celebrate</div>
         <div class="game-on">GAME ON</div>
         <div class="party-title">Callum's 5th Birthday!</div>
+        <img src="callum.jpeg" alt="Callum" class="callum-photo" />
         <div class="emoji-row">🎮 🃏 🎯 🎲 🕹️</div>
       </div>
 
@@ -65,14 +66,24 @@
         <input class="field-input" id="name-input" type="text" placeholder="Full name" />
 
         <div id="guest-count-section" style="display:none">
-          <label class="field-label" style="margin-top:16px">TOTAL GUESTS (INCLUDING YOU)</label>
-          <div class="guest-buttons" id="guest-buttons">
-            <button class="guest-btn active" onclick="selectGuests(1)">1</button>
-            <button class="guest-btn" onclick="selectGuests(2)">2</button>
-            <button class="guest-btn" onclick="selectGuests(3)">3</button>
-            <button class="guest-btn" onclick="selectGuests(4)">4</button>
-            <button class="guest-btn" onclick="selectGuests(5)">5</button>
-            <button class="guest-btn" onclick="selectGuests(6)">6</button>
+          <label class="field-label" style="margin-top:16px">NUMBER OF ADULTS (INCLUDING YOU)</label>
+          <div class="guest-buttons" id="adult-buttons">
+            <button class="guest-btn active" onclick="selectAdults(1)">1</button>
+            <button class="guest-btn" onclick="selectAdults(2)">2</button>
+            <button class="guest-btn" onclick="selectAdults(3)">3</button>
+            <button class="guest-btn" onclick="selectAdults(4)">4</button>
+            <button class="guest-btn" onclick="selectAdults(5)">5</button>
+            <button class="guest-btn" onclick="selectAdults(6)">6</button>
+          </div>
+
+          <label class="field-label" style="margin-top:16px">NUMBER OF KIDS</label>
+          <div class="guest-buttons" id="kid-buttons">
+            <button class="guest-btn active" onclick="selectKids(0)">0</button>
+            <button class="guest-btn" onclick="selectKids(1)">1</button>
+            <button class="guest-btn" onclick="selectKids(2)">2</button>
+            <button class="guest-btn" onclick="selectKids(3)">3</button>
+            <button class="guest-btn" onclick="selectKids(4)">4</button>
+            <button class="guest-btn" onclick="selectKids(5)">5</button>
           </div>
         </div>
 
@@ -116,14 +127,19 @@
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon">🎮</div>
-          <div class="stat-num" id="stat-heads">—</div>
-          <div class="stat-label">TOTAL HEADS</div>
-        </div>
-        <div class="stat-card">
           <div class="stat-icon">✓</div>
           <div class="stat-num" id="stat-yes">—</div>
           <div class="stat-label">ATTENDING</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🧑</div>
+          <div class="stat-num" id="stat-adults">—</div>
+          <div class="stat-label">ADULTS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🧒</div>
+          <div class="stat-num" id="stat-kids">—</div>
+          <div class="stat-label">KIDS</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">✗</div>
